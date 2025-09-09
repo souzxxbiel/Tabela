@@ -1,215 +1,179 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
-    "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-<meta name="description" content="The LuaSocket Homepage">
-<meta name="keywords" content="Lua, LuaSocket, Network, Library, Support, Internet">
-<title>LuaSocket: Network support for the Lua language </title>
-<link rel="stylesheet" href="reference.css" type="text/css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo Profissional 20 Produtos</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+}
+h1 {
+    text-align: center;
+    margin: 30px 0;
+    font-weight: 600;
+    color: #222;
+}
+.product-scroll {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px;
+    gap: 15px;
+    scroll-behavior: smooth;
+}
+.product-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+.product-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+.product-card {
+    min-width: 160px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    cursor: pointer;
+    text-align: center;
+    flex-shrink: 0;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+.product-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+.product-name {
+    font-weight: 500;
+    margin: 8px 0 5px;
+    font-size: 1em;
+    color: #111;
+}
+.price-tag {
+    font-weight: 600;
+    color: #007BFF;
+    margin-bottom: 10px;
+}
+.overlay-full {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+    padding:20px;
+    box-sizing:border-box;
+}
+.overlay-content {
+    background-color: #fff;
+    border-radius: 20px;
+    max-width: 400px;
+    width:100%;
+    text-align:center;
+    position:relative;
+    animation: fadeIn 0.4s ease;
+}
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+}
+.overlay-content img {
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    display:block;
+}
+.overlay-content .product-name {
+    font-size:1.4em;
+    margin:18px 0 10px;
+    font-weight:600;
+    color:#222;
+}
+.overlay-content .product-desc {
+    font-size:0.95em;
+    color:#555;
+    margin-bottom:14px;
+    padding:0 15px;
+}
+.overlay-content .price-tag {
+    background-color: #007BFF;
+    color: #fff;
+    font-weight:600;
+    padding:8px 20px;
+    border-radius:12px;
+    display:inline-block;
+    margin-bottom:15px;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.4);
+    font-size:1em;
+}
+.overlay-content .buy-btn {
+    background-color: #28a745;
+    border:none;
+    padding:14px 30px;
+    color:#fff;
+    font-weight:600;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:1.05em;
+    margin-bottom:20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 15px rgba(40,167,69,0.4);
+}
+.overlay-content .buy-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(40,167,69,0.5);
+}
+.close-btn {
+    position:absolute;
+    top:12px;
+    right:15px;
+    font-size:1.8em;
+    color:#fff;
+    background:none;
+    border:none;
+    cursor:pointer;
+}
+@media(max-width:500px){
+    .product-card img{height:140px;}
+    .overlay-content img{height:200px;}
+    .overlay-content .buy-btn{padding:12px 25px;font-size:1em;}
+}
+</style>
 </head>
-
 <body>
 
-<!-- header +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<h1>Catálogo Profissional 20 Produtos</h1>
 
-<div class=header>
-<hr>
-<center>
-<table summary="LuaSocket logo">
-<tr><td align=center><a href="http://www.lua.org">
-<img width=128 height=128 border=0 alt="LuaSocket" src="luasocket.png">
-</a></td></tr>
-<tr><td align=center valign=top>Network support for the Lua language
-</td></tr>
-</table>
-<p class=bar>
-<a href="index.html">home</a> &middot;
-<a href="index.html#download">download</a> &middot;
-<a href="installation.html">installation</a> &middot;
-<a href="introduction.html">introduction</a> &middot;
-<a href="reference.html">reference</a> 
-</p>
-</center>
-<hr>
-</div>
-
-<!-- whatis +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-<h2 id=whatis>What is LuaSocket?</h2>
-
-<p>
-LuaSocket  is a  <a href="http://www.lua.org">Lua</a>  extension library
-that is composed by two parts: a C core that provides  support for the TCP
-and UDP transport layers, and a set of Lua modules that add support for
-functionality commonly needed by applications that deal with the Internet. 
-</p>
-
-<p>
-The core support has been  implemented so that it  is both efficient and
-simple to use.  It is available to any Lua application once it has been
-properly initialized by the interpreter in use. The code has been tested
-and runs well on several Windows and UNIX platforms. </p>
-
-<p>
-Among the support modules, the most commonly used implement the 
-<a href=smtp.html>SMTP</a>
-(sending  e-mails),  
-<a href=http.html>HTTP</a>
-(WWW access)  and  
-<a href=ftp.html>FTP</a>  
-(uploading  and downloading files) client
-protocols. These provide a very natural and generic interface to the
-functionality defined by each protocol. 
-In addition, you will find that the 
-<a href=mime.html>MIME</a> (common encodings), 
-<a href=url.html>URL</a> 
-(anything you could possible want to do with one) and 
-<a href=ltn12.html>LTN12</a> 
-(filters, sinks, sources and pumps) modules can be very handy. 
-</p>
-
-<p>
-The library is available under the same  
-<a href="http://www.lua.org/copyright.html">
-terms and conditions</a> as the Lua language, the MIT license. The idea is
-that if you can use Lua in a project, you should also be able to use 
-LuaSocket.
-</p>
-
-<p>
-Copyright &copy; 1999-2013 Diego Nehab. All rights reserved. <br>
-Author: <A href="http://www.impa.br/~diego">Diego Nehab</a>
-</p>
-
-<!-- download +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-<h2 id=download>Download</h2>
-
-<p>
-LuaSocket version 3.0-rc1 is now available for download! 
-It is compatible with  Lua&nbsp;5.1 and 5.2, and has    
-been tested on Windows&nbsp;XP, Linux, and Mac OS X. Chances
-are it works well on most UNIX distributions and Windows flavors.
-</p>
-
-<p>
-The current version of the library can be found at
-the <a href="https://github.com/diegonehab/luasocket">LuaSocket
-project page</a> on GitHub. Besides the full C and Lua source code 
-for the library, the distribution contains several examples, 
-this user's manual and basic test procedures.
-</p>
-
-<p> Take a look at the <a
-href=installation.html>installation</a> section of the
-manual to find out how to properly install the library.
-</p>
-
-<!-- thanks +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-<h2 id=thanks>Special thanks</h2>
-
-<p>
-This marks the first release of LuaSocket that
-wholeheartedly embraces the open-source development
-philosophy. After a long hiatus, Matthew Wild finally
-convinced me it was time for a release including IPv6 and
-Lua 5.2 support. It was more work than we anticipated.
-Special thanks to Sam Roberts, Florian Zeitz, and Paul
-Aurich, Liam Devine, Alexey Melnichuk, and everybody else
-that has helped bring this library back to life. 
-</p>
-
-<!-- whatsnew +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-<h2 id=new>What's New</h2>
-
-<p>
-Main changes for LuaSocket&nbsp;3.0-rc1 are IPv6 support
-and Lua&nbsp;5.2 compatibility. 
-</p>
-
-<ul>
-<li> Added: Compatible with Lua&nbsp;5.2 
-<ul>
-<li> Note that unless you define <tt>LUA_COMPAT_MODULE</tt>,
-package tables will <em>not</em> be exported as globals!
-</ul>
-<li> Added: IPv6 support;
-<ul>
-<li> <tt>Socket.connect</tt> and <tt>socket.bind</tt> support IPv6 addresses;
-<li> <tt>Getpeername</tt> and <tt>getsockname</tt> support
-IPv6 addresses, and return the socket family as a third value;
-<li> URL module updated to support IPv6 host names;
-<li> New <tt>socket.tcp6</tt> and <tt>socket.udp6</tt> functions;
-<li> New <tt>socket.dns.getaddrinfo</tt> and 
-    <tt>socket.dns.getnameinfo</tt> functions;
-</ul>
-<li> Added: <tt>getoption</tt> method;
-<li> Fixed: <tt>url.unescape</tt> was returning additional values;
-<li> Fixed: <tt>mime.qp</tt>, <tt>mime.unqp</tt>, 
-    <tt>mime.b64</tt>, and <tt>mime.unb64</tt> could
-    mistaking their own stack slots for functions arguments;
-<li> Fixed: Receiving zero-length datagram is now possible;
-<li> Improved: Hidden all internal library symbols;
-<li> Improved: Better error messages;
-<li> Improved: Better documentation of socket options.
-<li> Fixed: manual sample of HTTP authentication now uses correct
-     "authorization" header (Alexandre Ittner);
-<li> Fixed: failure on bind() was destroying the socket (Sam Roberts);
-<li> Fixed: receive() returns immediatelly if prefix can satisfy
-     bytes requested (M Joonas Pihlaja);
-<li> Fixed: multicast didn't work on Windows, or anywhere
-     else for that matter (Herbert Leuwer, Adrian Sietsma);
-<li> Fixed: select() now reports an error when called with more
-     sockets than FD_SETSIZE (Lorenzo Leonini);
-<li> Fixed: manual links to home.html changed to index.html
-(Robert Hahn);
-<li> Fixed: mime.unb64() would return an empty string on results that started
-     with a null character (Robert Raschke);
-<li> Fixed: HTTP now automatically redirects on 303 and 307 (Jonathan Gray);
-<li> Fixed: calling sleep() with negative numbers could
-     block forever, wasting CPU. Now it returns immediately (MPB);
-<li> Improved: FTP commands are now sent in upper case to
-     help buggy servers (Anders Eurenius);
-<li> Improved: known headers now sent in canonic
-     capitalization to help buggy servers (Joseph Stewart);
-<li> Improved: Clarified tcp:receive() in the manual (MPB);
-<li> Improved: Decent makefiles (LHF).
-<li> Fixed: RFC links in documentation now point to IETF (Cosmin Apreutesei).
-</ul>
-
-<!-- old ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-<h2 id=old>Old Versions</h2>
-
-<p>
-All  previous versions  of the  LuaSocket library  can be  downloaded <a
-href="http://www.impa.br/~diego/software/luasocket/old">
-here</a>. Although these  versions are  no longer  supported, they  are
-still available for those that have compatibility issues. 
-</p>
-
-<!-- footer +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-
-<div class=footer>
-<hr>
-<center>
-<p class=bar>
-<a href="index.html#download">download</a> &middot;
-<a href="installation.html">installation</a> &middot;
-<a href="introduction.html">introduction</a> &middot;
-<a href="reference.html">reference</a>
-</p>
-<p>
-<small>
-Last modified by Diego Nehab on <br>
-Tue Jun 11 18:50:23 HKT 2013
-</small>
-</p>
-</center>
-</div>
-
-</body>
-</html>
+<div class="product-scroll">
+    <div class="product-card" data-name="Smartphone X1" data-desc="Smartphone potente com tela AMOLED e 128GB de armazenamento." data-price="R$2.499,00" data-img="https://via.placeholder.com/300?text=Smartphone+X1"><img src="https://via.placeholder.com/300?text=Smartphone+X1" alt=""><div class="product-name">Smartphone X1</div><div class="price-tag">R$2.499,00</div></div>
+    <div class="product-card" data-name="Fone de Ouvido Pro" data-desc="Fone bluetooth com cancelamento de ruído ativo e som cristalino." data-price="R$399,00" data-img="https://via.placeholder.com/300?text=Fone+Pro"><img src="https://via.placeholder.com/300?text=Fone+Pro" alt=""><div class="product-name">Fone de Ouvido Pro</div><div class="price-tag">R$399,00</div></div>
+    <div class="product-card" data-name="Notebook Ultra" data-desc="Notebook leve com 16GB RAM e SSD 512GB para produtividade máxima." data-price="R$5.199,00" data-img="https://via.placeholder.com/300?text=Notebook+Ultra"><img src="https://via.placeholder.com/300?text=Notebook+Ultra" alt=""><div class="product-name">Notebook Ultra</div><div class="price-tag">R$5.199,00</div></div>
+    <div class="product-card" data-name="Smartwatch Fit" data-desc="Smartwatch com monitor cardíaco, GPS e resistência à água." data-price="R$699,00" data-img="https://via.placeholder.com/300?text=Smartwatch+Fit"><img src="https://via.placeholder.com/300?text=Smartwatch+Fit" alt=""><div class="product-name">Smartwatch Fit</div><div class="price-tag">R$699,00</div></div>
+    <div class="product-card" data-name="Câmera Pro" data-desc="Câmera DSLR com lente 24-70mm e alta resolução." data-price="R$3.299,00" data-img="https://via.placeholder.com/300?text=C%C3%A2mera+Pro"><img src="https://via.placeholder.com/300?text=C%C3%A2mera+Pro" alt=""><div class="product-name">Câmera Pro</div><div class="price-tag">R$3.299,00</div></div>
+    <div class="product-card" data-name="Tablet Plus" data-desc="Tablet de 10” com caneta stylus e armazenamento de 256GB." data-price="R$1.899,00" data-img="https://via.placeholder.com/300?text=Tablet+Plus"><img src="https://via.placeholder.com/300?text=Tablet+Plus" alt=""><div class="product-name">Tablet Plus</div><div class="price-tag">R$1.899,00</div></div>
+    <div class="product-card" data-name="Teclado Mecânico" data-desc="Teclado RGB com switches de alta durabilidade e conforto." data-price="R$499,00" data-img="https://via.placeholder.com/300?text=Teclado+Mec%C3%A2nico"><img src="https://via.placeholder.com/300?text=Teclado+Mec%C3%A2nico" alt=""><div class="product-name">Teclado Mecânico</div><div class="price-tag">R$499,00</div></div>
+    <div class="product-card" data-name="Mouse Gamer" data-desc="Mouse ergonômico com alta precisão e iluminação RGB." data-price="R$299,00" data-img="https://via.placeholder.com/300?text=Mouse+Gamer"><img src="https://via.placeholder.com/300?text=Mouse+Gamer" alt=""><div class="product-name">Mouse Gamer</div><div class="price-tag">R$299,00</div></div>
+    <div class="product-card" data-name="Caixa de Som" data-desc="Caixa de som portátil bluetooth com graves potentes." data-price="R$249,00" data-img="https://via.placeholder.com/300?text=Caixa+de+Som"><img src="https://via.placeholder.com/300?text=Caixa+de+Som" alt=""><div class="product-name">Caixa de Som</div><div class="price-tag">R$249,00</div></div>
+    <div class="product-card" data-name="Câmera de Ação" data-desc="Câmera resistente à água, 4K e estabilização de imagem." data-price="R$799,00" data-img="https://via.placeholder.com/300?text=C%C3%A2mera+de+A%C3%A7%C3%A3o"><img src="https://via.placeholder.com/300?text=C%C3%A2mera+de+A%C3%A7%C3%A3o" alt=""><div class="product-name">Câmera de Ação</div><div class="price-tag">R$799,00</div></div>
+    <div class="product-card" data-name="Monitor UltraWide" data-desc="Monitor 34” ultra-wide com alta taxa de atualização." data-price="R$2.199,00" data-img="https://via.placeholder.com/300?text=Monitor+UltraWide"><img src="https://via.placeholder.com/300?text=Monitor+UltraWide" alt=""><div class="product-name">Monitor UltraWide</div><div class="price-tag">R$2.199,00</div></div>
+    <div class="product-card" data-name="Cadeira Gamer" data-desc="Cadeira ergonômica com suporte lombar e encosto reclinável." data-price="R$1.299,00" data-img="https://via.placeholder.com/300?text=Cadeira+Gamer"><img src="https://via.placeholder.com/300?text=Cadeira+Gamer" alt=""><div class="product-name">Cadeira Gamer</div><div class="price-tag">R$1.299,00</div></div>
+    <div class="product-card" data-name="SSD 1TB" data-desc="SSD rápido e confiável para alto desempenho em PCs e notebooks." data-price="R$699,00" data-img="https://via.placeholder.com/300?text=SSD+1TB"><img src="https://via.placeholder.com/300?text=SSD+1TB" alt=""><div class="product-name">SSD 1TB</div><div class="price-tag">R$699,00</div></div>
+    <div class="product-card" data-name="HD Externo 2TB" data-desc="HD portátil de 2TB com alta velocidade de transferência." data-price="R$499,00" data-img="https://via.placeholder.com/300?text=HD+2TB"><img src="https://via.placeholder.com/300?text=HD+2TB" alt=""><div class="product-name">HD Externo 2TB</div><div class="price-tag">R$499,00</div></div>
+    <div class="product-card" data-name="Roteador WiFi 6" data-desc="Roteador moderno com cobertura ampla e alta velocidade." data-price="R$699,00" data-img="https://via.placeholder.com/300?text=Roteador+WiFi+6"><img src="https://via.placeholder.com/300?text=Roteador+WiFi+6" alt=""><div class="product-name">Roteador WiFi 6</div><div class="price-tag">R$699,00</div></div>
+    <div class="product-card" data-name="Smart TV 55”" data-desc="Smart TV 4K com HDR e conectividade completa." data-price="R$3.199,00" data-img="https://via.placeholder.com/300?text=Smart+TV+55"><img src="https://via.placeholder.com/300?text=Smart+TV+55" alt=""><div class="product-name">Smart TV 55”</div><div class="price-tag">R$3.199,00</div></div>
+    <div class="product-card" data-name="Cafeteira Expresso" data-desc="Cafeteira automática para café expresso perfeito em casa." data-price="R$1.299,00" data-img="https://via.placeholder.com/300?text=Cafeteira+Expresso"><img src="https://via.placeholder.com/300?text=Cafeteira+Expresso" alt=""><div class="product-name">Cafeteira Expresso</div><div class="price-tag">R$1.299,00</div></div>
+    <div class="product-card" data-name="Bicicleta Elétrica
