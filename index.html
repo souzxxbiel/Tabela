@@ -3,152 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catálogo Profissional 20 Produtos</title>
+<title>Catálogo Oliveira</title>
+
+<!-- Fontes elegantes -->
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
 <style>
+/* ---------------- ESTILO GERAL ---------------- */
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #f0f2f5;
-    color: #333;
+    font-family: 'Merriweather', serif;
+    background: linear-gradient(180deg, #001f5b, #000000);
+    color: #fff;
 }
+
 h1 {
     text-align: center;
-    margin: 30px 0;
-    font-weight: 600;
-    color: #222;
+    margin: 40px 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.5em;
+    color: #fff; /* Título branco */
+    letter-spacing: 1px;
 }
-.product-scroll {
+
+/* ---------------- ABAS ---------------- */
+.tabs {
     display: flex;
-    overflow-x: auto;
-    padding: 20px;
-    gap: 15px;
-    scroll-behavior: smooth;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 20px;
 }
-.product-scroll::-webkit-scrollbar {
-    height: 8px;
-}
-.product-scroll::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.2);
-    border-radius: 4px;
-}
-.product-card {
-    min-width: 160px;
-    border-radius: 16px;
-    overflow: hidden;
-    background-color: #fff;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+
+.tab {
+    padding: 12px 25px;
+    border-radius: 12px;
     cursor: pointer;
-    text-align: center;
-    flex-shrink: 0;
+    font-weight: 700;
+    background: #00aaff;
+    color: #fff;
+    transition: background 0.3s;
+}
+
+.tab.active, .tab:hover {
+    background: #0077cc;
+}
+
+/* ---------------- LISTA DE PRODUTOS ---------------- */
+.product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+}
+
+/* ---------------- CARD DO PRODUTO ---------------- */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     transition: transform 0.3s, box-shadow 0.3s;
+    background: linear-gradient(135deg,#001f5b,#000000);
 }
+
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
 }
+
 .product-card img {
     width: 100%;
-    height: 150px;
+    height: 220px;
     object-fit: cover;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
 }
+
 .product-name {
-    font-weight: 500;
-    margin: 8px 0 5px;
+    font-weight: 700;
+    font-size: 1.4em;
+    margin: 15px;
+}
+
+.product-desc {
     font-size: 1em;
-    color: #111;
+    margin: 0 15px 15px;
+    line-height: 1.4;
 }
+
 .price-tag {
-    font-weight: 600;
-    color: #007BFF;
-    margin-bottom: 10px;
+    font-weight: 700;
+    margin: 0 15px 20px;
+    font-size: 1.2em;
+    color: #00ffff;
 }
+
+/* ---------------- OVERLAY ---------------- */
 .overlay-full {
     position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.85);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:1000;
-    padding:20px;
-    box-sizing:border-box;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
 }
+
 .overlay-content {
-    background-color: #fff;
+    background: #111;
     border-radius: 20px;
     max-width: 400px;
-    width:100%;
-    text-align:center;
-    position:relative;
+    width: 100%;
+    text-align: center;
+    position: relative;
     animation: fadeIn 0.4s ease;
 }
+
 @keyframes fadeIn {
     from {opacity:0; transform:translateY(20px);}
     to {opacity:1; transform:translateY(0);}
 }
+
 .overlay-content img {
-    width:100%;
-    height:250px;
-    object-fit:cover;
-    display:block;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
 }
+
 .overlay-content .product-name {
-    font-size:1.4em;
-    margin:18px 0 10px;
-    font-weight:600;
-    color:#222;
+    font-size: 1.6em;
+    margin: 18px 0 10px;
+    font-weight: 700;
+    color: #00aaff;
 }
+
 .overlay-content .product-desc {
-    font-size:0.95em;
-    color:#555;
-    margin-bottom:14px;
-    padding:0 15px;
+    font-size: 1em;
+    color: #ccc;
+    margin-bottom: 14px;
+    padding: 0 15px;
 }
+
 .overlay-content .price-tag {
     background-color: #007BFF;
     color: #fff;
-    font-weight:600;
-    padding:8px 20px;
-    border-radius:12px;
-    display:inline-block;
-    margin-bottom:15px;
-    box-shadow: 0 4px 12px rgba(0,123,255,0.4);
-    font-size:1em;
+    font-weight: 700;
+    padding: 10px 25px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.4);
+    font-size: 1.1em;
 }
+
 .overlay-content .buy-btn {
-    background-color: #28a745;
-    border:none;
-    padding:14px 30px;
-    color:#fff;
-    font-weight:600;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:1.05em;
-    margin-bottom:20px;
+    background-color: #00ffff;
+    border: none;
+    padding: 14px 30px;
+    color: #000;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.05em;
+    margin-bottom: 20px;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 6px 15px rgba(40,167,69,0.4);
+    box-shadow: 0 6px 15px rgba(0,255,255,0.4);
 }
+
 .overlay-content .buy-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(40,167,69,0.5);
+    box-shadow: 0 8px 20px rgba(0,255,255,0.6);
 }
+
 .close-btn {
-    position:absolute;
-    top:12px;
-    right:15px;
-    font-size:1.8em;
-    color:#fff;
-    background:none;
-    border:none;
-    cursor:pointer;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 2em;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
+
 @media(max-width:500px){
-    .product-card img{height:140px;}
+    .product-card img{height:180px;}
     .overlay-content img{height:200px;}
     .overlay-content .buy-btn{padding:12px 25px;font-size:1em;}
 }
@@ -156,24 +199,84 @@ h1 {
 </head>
 <body>
 
-<h1>Catálogo Profissional 20 Produtos</h1>
+<h1>Catálogo Oliveira</h1>
 
-<div class="product-scroll">
-    <div class="product-card" data-name="Smartphone X1" data-desc="Smartphone potente com tela AMOLED e 128GB de armazenamento." data-price="R$2.499,00" data-img="https://via.placeholder.com/300?text=Smartphone+X1"><img src="https://via.placeholder.com/300?text=Smartphone+X1" alt=""><div class="product-name">Smartphone X1</div><div class="price-tag">R$2.499,00</div></div>
-    <div class="product-card" data-name="Fone de Ouvido Pro" data-desc="Fone bluetooth com cancelamento de ruído ativo e som cristalino." data-price="R$399,00" data-img="https://via.placeholder.com/300?text=Fone+Pro"><img src="https://via.placeholder.com/300?text=Fone+Pro" alt=""><div class="product-name">Fone de Ouvido Pro</div><div class="price-tag">R$399,00</div></div>
-    <div class="product-card" data-name="Notebook Ultra" data-desc="Notebook leve com 16GB RAM e SSD 512GB para produtividade máxima." data-price="R$5.199,00" data-img="https://via.placeholder.com/300?text=Notebook+Ultra"><img src="https://via.placeholder.com/300?text=Notebook+Ultra" alt=""><div class="product-name">Notebook Ultra</div><div class="price-tag">R$5.199,00</div></div>
-    <div class="product-card" data-name="Smartwatch Fit" data-desc="Smartwatch com monitor cardíaco, GPS e resistência à água." data-price="R$699,00" data-img="https://via.placeholder.com/300?text=Smartwatch+Fit"><img src="https://via.placeholder.com/300?text=Smartwatch+Fit" alt=""><div class="product-name">Smartwatch Fit</div><div class="price-tag">R$699,00</div></div>
-    <div class="product-card" data-name="Câmera Pro" data-desc="Câmera DSLR com lente 24-70mm e alta resolução." data-price="R$3.299,00" data-img="https://via.placeholder.com/300?text=C%C3%A2mera+Pro"><img src="https://via.placeholder.com/300?text=C%C3%A2mera+Pro" alt=""><div class="product-name">Câmera Pro</div><div class="price-tag">R$3.299,00</div></div>
-    <div class="product-card" data-name="Tablet Plus" data-desc="Tablet de 10” com caneta stylus e armazenamento de 256GB." data-price="R$1.899,00" data-img="https://via.placeholder.com/300?text=Tablet+Plus"><img src="https://via.placeholder.com/300?text=Tablet+Plus" alt=""><div class="product-name">Tablet Plus</div><div class="price-tag">R$1.899,00</div></div>
-    <div class="product-card" data-name="Teclado Mecânico" data-desc="Teclado RGB com switches de alta durabilidade e conforto." data-price="R$499,00" data-img="https://via.placeholder.com/300?text=Teclado+Mec%C3%A2nico"><img src="https://via.placeholder.com/300?text=Teclado+Mec%C3%A2nico" alt=""><div class="product-name">Teclado Mecânico</div><div class="price-tag">R$499,00</div></div>
-    <div class="product-card" data-name="Mouse Gamer" data-desc="Mouse ergonômico com alta precisão e iluminação RGB." data-price="R$299,00" data-img="https://via.placeholder.com/300?text=Mouse+Gamer"><img src="https://via.placeholder.com/300?text=Mouse+Gamer" alt=""><div class="product-name">Mouse Gamer</div><div class="price-tag">R$299,00</div></div>
-    <div class="product-card" data-name="Caixa de Som" data-desc="Caixa de som portátil bluetooth com graves potentes." data-price="R$249,00" data-img="https://via.placeholder.com/300?text=Caixa+de+Som"><img src="https://via.placeholder.com/300?text=Caixa+de+Som" alt=""><div class="product-name">Caixa de Som</div><div class="price-tag">R$249,00</div></div>
-    <div class="product-card" data-name="Câmera de Ação" data-desc="Câmera resistente à água, 4K e estabilização de imagem." data-price="R$799,00" data-img="https://via.placeholder.com/300?text=C%C3%A2mera+de+A%C3%A7%C3%A3o"><img src="https://via.placeholder.com/300?text=C%C3%A2mera+de+A%C3%A7%C3%A3o" alt=""><div class="product-name">Câmera de Ação</div><div class="price-tag">R$799,00</div></div>
-    <div class="product-card" data-name="Monitor UltraWide" data-desc="Monitor 34” ultra-wide com alta taxa de atualização." data-price="R$2.199,00" data-img="https://via.placeholder.com/300?text=Monitor+UltraWide"><img src="https://via.placeholder.com/300?text=Monitor+UltraWide" alt=""><div class="product-name">Monitor UltraWide</div><div class="price-tag">R$2.199,00</div></div>
-    <div class="product-card" data-name="Cadeira Gamer" data-desc="Cadeira ergonômica com suporte lombar e encosto reclinável." data-price="R$1.299,00" data-img="https://via.placeholder.com/300?text=Cadeira+Gamer"><img src="https://via.placeholder.com/300?text=Cadeira+Gamer" alt=""><div class="product-name">Cadeira Gamer</div><div class="price-tag">R$1.299,00</div></div>
-    <div class="product-card" data-name="SSD 1TB" data-desc="SSD rápido e confiável para alto desempenho em PCs e notebooks." data-price="R$699,00" data-img="https://via.placeholder.com/300?text=SSD+1TB"><img src="https://via.placeholder.com/300?text=SSD+1TB" alt=""><div class="product-name">SSD 1TB</div><div class="price-tag">R$699,00</div></div>
-    <div class="product-card" data-name="HD Externo 2TB" data-desc="HD portátil de 2TB com alta velocidade de transferência." data-price="R$499,00" data-img="https://via.placeholder.com/300?text=HD+2TB"><img src="https://via.placeholder.com/300?text=HD+2TB" alt=""><div class="product-name">HD Externo 2TB</div><div class="price-tag">R$499,00</div></div>
-    <div class="product-card" data-name="Roteador WiFi 6" data-desc="Roteador moderno com cobertura ampla e alta velocidade." data-price="R$699,00" data-img="https://via.placeholder.com/300?text=Roteador+WiFi+6"><img src="https://via.placeholder.com/300?text=Roteador+WiFi+6" alt=""><div class="product-name">Roteador WiFi 6</div><div class="price-tag">R$699,00</div></div>
-    <div class="product-card" data-name="Smart TV 55”" data-desc="Smart TV 4K com HDR e conectividade completa." data-price="R$3.199,00" data-img="https://via.placeholder.com/300?text=Smart+TV+55"><img src="https://via.placeholder.com/300?text=Smart+TV+55" alt=""><div class="product-name">Smart TV 55”</div><div class="price-tag">R$3.199,00</div></div>
-    <div class="product-card" data-name="Cafeteira Expresso" data-desc="Cafeteira automática para café expresso perfeito em casa." data-price="R$1.299,00" data-img="https://via.placeholder.com/300?text=Cafeteira+Expresso"><img src="https://via.placeholder.com/300?text=Cafeteira+Expresso" alt=""><div class="product-name">Cafeteira Expresso</div><div class="price-tag">R$1.299,00</div></div>
-    <div class="product-card" data-name="Bicicleta Elétrica
+<!-- ---------------- ABAS ---------------- -->
+<div class="tabs">
+    <div class="tab active" data-tab="netflix">NETFLIX</div>
+    <div class="tab" data-tab="youtube">YOUTUBE</div>
+</div>
+
+<!-- ---------------- LISTA DE PRODUTOS ---------------- -->
+<div class="product-list" id="netflix">
+
+    <!-- ================== NETFLIX 1 ================== -->
+    <div class="product-card" 
+         data-name="NETFLIX 4K 30 DIAS | 1 TELA COM PIN"       
+         data-desc="Netflix 4K por 30 dias, 1 tela, PIN incluído."  
+         data-price="R$20,90"         
+         data-img="https://via.placeholder.com/300?text=Netflix+30+Dias">
+
+        <img src="https://via.placeholder.com/300?text=Netflix+30+Dias" alt="">
+        <div class="product-name">NETFLIX 4K 30 DIAS | 1 TELA COM PIN</div>
+        <div class="product-desc">Netflix 4K por 30 dias, 1 tela, PIN incluído.</div>
+        <div class="price-tag">R$20,90</div>
+    </div>
+
+    <!-- ================== NETFLIX 2 ================== -->
+    <div class="product-card" 
+         data-name="[SOMENTE PARA TV] NETFLIX 4K 30 DIAS | 1 TELA COM PIN" 
+         data-desc="Netflix 4K para TV por 30 dias, 1 tela, PIN incluído." 
+         data-price="R$19,90" 
+         data-img="https://via.placeholder.com/300?text=Netflix+TV+30+Dias">
+
+        <img src="https://via.placeholder.com/300?text=Netflix+TV+30+Dias" alt="">
+        <div class="product-name">[SOMENTE PARA TV] NETFLIX 4K 30 DIAS | 1 TELA COM PIN</div>
+        <div class="product-desc">Netflix 4K para TV por 30 dias, 1 tela, PIN incluído.</div>
+        <div class="price-tag">R$19,90</div>
+    </div>
+
+    <!-- ================== NETFLIX 3 ================== -->
+    <div class="product-card" 
+         data-name="NETFLIX 4K 10 DIAS COMPARTILHADA" 
+         data-desc="Netflix 4K compartilhada por 10 dias." 
+         data-price="R$10,99" 
+         data-img="https://via.placeholder.com/300?text=Netflix+10+Dias">
+
+        <img src="https://via.placeholder.com/300?text=Netflix+10+Dias" alt="">
+        <div class="product-name">NETFLIX 4K 10 DIAS COMPARTILHADA</div>
+        <div class="product-desc">Netflix 4K compartilhada por 10 dias.</div>
+        <div class="price-tag">R$10,99</div>
+    </div>
+
+    <!-- ================== NETFLIX 4 ================== -->
+    <div class="product-card" 
+         data-name="[SOMENTE PARA TV] NETFLIX 4K 7 DIAS COMPARTILHADA" 
+         data-desc="Netflix 4K compartilhada por 7 dias, somente para TV." 
+         data-price="R$10,99" 
+         data-img="https://via.placeholder.com/300?text=Netflix+7+Dias">
+
+        <img src="https://via.placeholder.com/300?text=Netflix+7+Dias" alt="">
+        <div class="product-name">[SOMENTE PARA TV] NETFLIX 4K 7 DIAS COMPARTILHADA</div>
+        <div class="product-desc">Netflix 4K compartilhada por 7 dias, somente para TV.</div>
+        <div class="price-tag">R$10,99</div>
+    </div>
+
+</div>
+
+<div class="product-list" id="youtube" style="display:none;">
+
+    <!-- ================== YOUTUBE 1 ================== -->
+    <div class="product-card" 
+         data-name="YouTube Premium" 
+         data-desc="Assinatura YouTube Premium." 
+         data-price="R$18,00" 
+         data-img="https://via.placeholder.com/300?text=YouTube+Premium">
+
+        <img src="https://via.placeholder.com/300?text=YouTube+Premium" alt="">
+        <div class="product-name">YouTube Premium</div>
+        <div class="product-desc">Assinatura YouTube Premium.</div>
+        <div class="price-tag">R$18,00</div>
+    </div>
+
+</
