@@ -3,194 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Serviços de Streaming & Internet Ilimitada</title>
-
+<title>Serviços & Internet - Premium</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
 <style>
-body {
-    margin:0;
-    font-family: 'Merriweather', serif;
-    background: #000;
-    color: #fff;
-}
-h1 {
-    text-align:center;
-    font-family:'Playfair Display', serif;
+/* Reset */
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family:'Merriweather', serif; background:#0a0a0a; color:#fff; line-height:1.5;}
+h1 {text-align:center; font-family:'Playfair Display', serif; color:#00ffff; margin:40px 0 20px; font-size:2.8em; text-shadow:0 0 15px #00ffff;}
+h2 {text-align:center; font-family:'Playfair Display', serif; color:#00ff88; margin:30px 0 20px; font-size:2.2em; text-shadow:0 0 12px #00ff88;}
+
+/* Container */
+.container {width:95%; max-width:1200px; margin:0 auto 50px;}
+
+/* Seleção inicial */
+.service-selection {display:flex; justify-content:center; gap:30px; margin-bottom:50px;}
+.service-btn {
+    padding:20px 40px;
+    border-radius:20px;
+    background:#111;
+    color:#fff;
     font-weight:700;
-    margin:20px 0;
-    font-size:2.2em;
-    color:#00ffff;
-    text-shadow:0 0 12px #00ffff;
+    font-size:1.3em;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(0,0,0,0.7);
+    transition:0.4s;
 }
+.service-btn:hover {background:#00ffff; color:#000; transform:scale(1.08);}
 
-.container-sections {
-    display:flex;
-    gap:20px;
-    justify-content:center;
-    flex-wrap:wrap;
-    padding:20px;
+/* Seções */
+.section {display:flex; flex-wrap:wrap; background: rgba(255,255,255,0.03); border-radius:20px; padding:20px; box-shadow:0 10px 35px rgba(0,0,0,0.85); margin-bottom:50px; opacity:0; transform:translateY(30px); transition:0.6s;}
+.section.active {opacity:1; transform:translateY(0);}
+
+/* Tabs */
+.tabs {display:flex; flex-direction:column; gap:12px; min-width:220px;}
+.tab-btn {
+    display:flex; align-items:center; gap:10px; padding:14px 18px; border-radius:14px;
+    background:#111; color:#fff; font-weight:700; cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,0.7); transition:0.3s;
 }
+.tab-btn img {width:26px; height:26px;}
+.tab-btn:hover, .tab-btn.active {background:#00ffff; color:#000; transform:scale(1.05);}
 
-.section {
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
+/* Conteúdo */
+.tab-content {flex:1; margin-left:25px; display:flex; flex-wrap:wrap; gap:20px;}
+.product-list {display:none; flex-wrap:wrap; gap:20px;}
+.product-list.active {display:flex;}
+
+/* Card de produto */
+.card {
+    background:#111;
+    flex:1 1 calc(30% - 20px);
+    min-width:220px;
     padding:20px;
     border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.8);
-    min-width:320px;
-    max-width:600px;
-    background:rgba(255,255,255,0.03);
-}
-
-.tabs {
+    box-shadow:0 8px 25px rgba(0,0,0,0.7);
+    text-align:center;
+    transition:0.3s;
     display:flex;
     flex-direction:column;
-    gap:8px;
-    min-width:180px;
+    justify-content:center;
 }
-.tab-btn {
-    display:flex;
-    align-items:center;
-    gap:8px;
-    background:#111;
-    border:none;
-    padding:10px 14px;
+.card:hover {transform:translateY(-5px) scale(1.02); box-shadow:0 12px 35px rgba(0,0,0,0.85);}
+.card p {font-size:1.2em; color:#aaa; margin-bottom:15px;}
+.card a {
+    display:inline-block;
+    padding:10px 20px;
     border-radius:12px;
+    background:#00ffff;
+    color:#000;
+    font-weight:700;
+    text-decoration:none;
+    transition:0.3s;
+}
+.card a:hover {background:#00ccff; color:#fff;}
+
+/* Botão voltar */
+.back-btn {
+    align-self:flex-start;
+    padding:12px 24px;
+    border-radius:14px;
+    background:#111;
     color:#fff;
     font-weight:700;
     cursor:pointer;
-    box-shadow:0 6px 15px rgba(0,0,0,0.6);
+    margin-bottom:20px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.7);
     transition:0.3s;
-    font-size:0.95em;
 }
-.tab-btn img {
-    width:28px;
-    height:28px;
-    object-fit:contain;
-    border-radius:4px;
-}
-.streaming .tab-btn.active, .streaming .tab-btn:hover {
-    background:#00ffff;
-    color:#000;
-}
-.internet .tab-btn.active, .internet .tab-btn:hover {
-    background:#00ff88;
-    color:#000;
-}
+.back-btn:hover {background:#ff0066; color:#fff; transform:scale(1.05);}
 
-.tab-content {
-    flex:1;
-    margin-left:20px;
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-.product-list {
-    display:none;
-    flex-direction:column;
-    padding:10px 0;
-    text-align:center;
-}
-.product-list.active {display:flex;}
-.empty-msg {
-    color:#aaa;
-    font-style:italic;
-    font-size:1.3em;
-    text-shadow:0 0 8px currentColor;
-}
-
-@media(max-width:1300px){
-    .container-sections {flex-direction:column; align-items:center;}
-}
-@media(max-width:768px){
+/* Responsivo */
+@media(max-width:900px){
     .section {flex-direction:column;}
-    .tab-content {margin-left:0;}
+    .tab-content {margin-left:0; justify-content:center;}
+    .card {flex:1 1 45%;}
+}
+@media(max-width:500px){
+    .card {flex:1 1 100%;}
+    .service-btn {width:80%; text-align:center;}
 }
 </style>
 </head>
 <body>
 
-<h1>Serviços de Streaming & Internet Ilimitada</h1>
+<h1>Serviços & Internet Premium</h1>
 
-<div class="container-sections">
+<div class="container">
 
-<!-- STREAMING -->
-<div class="section streaming">
-    <div class="tabs">
-        <button class="tab-btn active" data-tab="combos"><img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Layers_font_awesome.svg" alt="Combos"> Combos</button>
-        <button class="tab-btn" data-tab="netflix"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"> Netflix</button>
-        <button class="tab-btn" data-tab="youtube"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube"> YouTube</button>
-        <button class="tab-btn" data-tab="canva"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Canva_Logo.svg" alt="Canva"> Canva</button>
-        <button class="tab-btn" data-tab="paramount"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Paramount_Pictures_logo.svg" alt="Paramount"> Paramount</button>
-        <button class="tab-btn" data-tab="spotify"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify"> Spotify</button>
-        <button class="tab-btn" data-tab="primevideo"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Amazon_Prime_Video.svg" alt="Prime Video"> Prime Vídeo</button>
-        <button class="tab-btn" data-tab="globoplay"><img src="https://upload.wikimedia.org/wikipedia/commons/3/37/GloboPlay_logo.svg" alt="Globoplay"> Globoplay</button>
-        <button class="tab-btn" data-tab="premiere"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Premiere_logo.svg" alt="Premiere"> Premiere</button>
-        <button class="tab-btn" data-tab="hbomax"><img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg" alt="HBO Max"> HBO Max</button>
-        <button class="tab-btn" data-tab="capcut"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/CapCut_Logo.svg" alt="CapCut"> CapCut</button>
-        <button class="tab-btn" data-tab="google"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google Veo 3"> Google Veo 3</button>
-        <button class="tab-btn" data-tab="crunchyroll"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Crunchyroll_logo.svg" alt="Crunchyroll"> Crunchyroll</button>
-        <button class="tab-btn" data-tab="telecine"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Telecine_logo.svg" alt="Telecine"> Telecine</button>
-        <button class="tab-btn" data-tab="clarotv"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Claro_logo.svg" alt="Claro TV+"> Claro TV+</button>
-        <button class="tab-btn" data-tab="appletv"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple TV"> Apple TV</button>
-        <button class="tab-btn" data-tab="ufc"><img src="https://upload.wikimedia.org/wikipedia/commons/7/73/UFC_logo.svg" alt="UFC Fight Pass"> UFC Fight Pass</button>
-        <button class="tab-btn" data-tab="nba"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/NBA_logo.svg" alt="NBA League Pass"> NBA League Pass</button>
-        <button class="tab-btn" data-tab="myfamily"><img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Family_icon.svg" alt="My Family"> My Family</button>
-        <button class="tab-btn" data-tab="sky"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Sky_logo_2020.svg" alt="Sky+"> Sky+</button>
-        <button class="tab-btn" data-tab="duolingo"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Duolingo_logo.svg" alt="Duolingo Premium"> Duolingo Premium</button>
-        <button class="tab-btn" data-tab="chatgpt"><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT"> ChatGPT</button>
+    <!-- Seleção inicial -->
+    <div class="service-selection">
+        <button class="service-btn" data-service="streaming">Serviços de Streaming</button>
+        <button class="service-btn" data-service="internet">Internet Ilimitada</button>
     </div>
-    <div class="tab-content">
-        <div class="product-list active" id="combos"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="netflix"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="youtube"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="canva"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="paramount"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="spotify"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="primevideo"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="globoplay"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="premiere"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="hbomax"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="capcut"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="google"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="crunchyroll"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="telecine"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="clarotv"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="appletv"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="ufc"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="nba"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="myfamily"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="sky"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="duolingo"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="chatgpt"><p class="empty-msg">Em breve</p></div>
-    </div>
-</div>
 
-<!-- INTERNET -->
-<div class="section internet">
-    <div class="tabs">
-        <button class="tab-btn active" data-tab="internet-android"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="Android"> Android</button>
-        <button class="tab-btn" data-tab="internet-ios"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="iOS"> iOS</button>
+    <!-- Streaming -->
+    <div class="section" id="streaming-section">
+        <button class="back-btn">Voltar</button>
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="combos">Combos</button>
+            <button class="tab-btn" data-tab="netflix">Netflix</button>
+            <button class="tab-btn" data-tab="youtube">YouTube</button>
+            <button class="tab-btn" data-tab="canva">Canva</button>
+            <button class="tab-btn" data-tab="spotify">Spotify</button>
+            <button class="tab-btn" data-tab="primevideo">Prime Video</button>
+            <button class="tab-btn" data-tab="globoplay">Globoplay</button>
+            <button class="tab-btn" data-tab="premiere">Premiere</button>
+        </div>
+        <div class="tab-content">
+            <div class="product-list active" id="combos">
+                <div class="card"><p>Em breve</p><a href="https://wa.me/55996275431?text=Estou%20interessado%20no%20produto%20Combos" target="_blank">Comprar</a></div>
+            </div>
+            <div class="product-list" id="netflix">
+                <div class="card"><p>Em breve</p><a href="https://wa.me/55996275431?text=Estou%20interessado%20no%20produto%20Netflix" target="_blank">Comprar</a></div>
+            </div>
+            <div class="product-list" id="youtube">
+                <div class="card"><p>Em breve</p><a href="https://wa.me/55996275431?text=Estou%20interessado%20no%20produto%20YouTube" target="_blank">Comprar</a></div>
+            </div>
+            <div class="product-list" id="canva">
+                <div class="card"><p>Em breve</p><a href="https://wa.me/55996275431?text=Estou%20interessado%20no%20produto%20Canva" target="_blank">Comprar</a></div>
+            </div>
+            <div class="product-list" id="spotify">
+                <div class="card"><p>Em breve</p><a href="https://wa.me/55996275431?text=Estou%20interessado%20no%20produto%20Spotify" target="_blank">Comprar</a></div>
+            </div>
+            <div class="product-list" id="primevideo">
+                <div class="card"><p>Em breve</p><a href="https://wa.me/55996275431?text=Estou%20interessado%20no%20produto%20Prime%20Video" target="_blank">Comprar</a></div>
+            </div>
+            <div class="product-list" id="globoplay">
+                <div class="card"><p>Em breve</p><a href="https://wa.me/55996275431?text=Estou%20interessado%20no%20produto%20Globoplay" target="_blank">Comprar</a></div>
+            </div>
+            <div class="product-list" id="premiere">
+                <div class="card"><p>Em breve</p><a href="https://wa.me/55996275431?text=Estou%20interessado%20no%20produto%20Premiere" target="_blank">Comprar</a></div>
+            </div>
+        </div>
     </div>
-    <div class="tab-content">
-        <div class="product-list active" id="internet-android"><p class="empty-msg">Em breve</p></div>
-        <div class="product-list" id="internet-ios"><p class="empty-msg">Em breve</p></div>
+
+    <!-- Internet Ilimitada -->
+    <div class="section" id="internet-section">
+        <button class="back-btn">Voltar</button>
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="internet-android">Android</button>
+            <button class="tab-btn" data-tab="internet-ios">iOS</button>
+        </div>
+        <div class="tab-content">
+            <div class="product-list active" id="internet-android">
+                <div class="card"><p>Em breve</p><a href="https://wa.me/55996275431?text=Estou%20interessado%20no%20produto%20Internet%20Android" target="_blank">Comprar</a></div>
+            </div>
+            <div class="product-list" id="internet-ios">
+                <div class="card"><p>Em breve</p><a href="https://wa.me/55996275431?text=Estou%20interessado%20no%20produto%20Internet%20iOS" target="_blank">Comprar</a></div>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <script>
+// Seleção inicial
+const serviceBtns = document.querySelectorAll('.service-btn');
+serviceBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        document.querySelector('.service-selection').style.display='none';
+        if(btn.dataset.service==='streaming'){
+            document.getElementById('streaming-section').style.display='flex';
+            setTimeout(()=>{document.getElementById('streaming-section').classList.add('active');},50);
+        } else {
+            document.getElementById('internet-section').style.display='flex';
+            setTimeout(()=>{document.getElementById('internet-section').classList.add('active');},50);
+        }
+    });
+});
+
+// Voltar
+const backBtns = document.querySelectorAll('.back-btn');
+backBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        document.querySelector('.service-selection').style.display='flex';
+        btn.parentElement.classList.remove('active');
+        btn.parentElement.style.display='none';
+    });
+});
+
+// Abas internas
 const allTabBtns = document.querySelectorAll('.tab-btn');
 allTabBtns.forEach(btn=>{
     btn.addEventListener('click',()=>{
         const parentSection = btn.closest('.section');
-        const btns = parentSection.querySelectorAll('.tab-btn');
-        const lists = parentSection.querySelectorAll('.product-list');
-
-        btns.forEach(b=>b.classList.remove('active'));
-        lists.forEach(l=>l.classList.remove('active'));
-
+        const tabs = parentSection.querySelectorAll('.tab-btn');
+        const contents = parentSection.querySelectorAll('.product-list');
+        tabs.forEach(b=>b.classList.remove('active'));
+        contents.forEach(c=>c.classList.remove('active'));
         btn.classList.add('active');
         document.getElementById(btn.dataset.tab).classList.add('active');
     });
