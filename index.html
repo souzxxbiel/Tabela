@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Serviços de Streaming</title>
+<title>Serviços de Streaming & Internet Ilimitada</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
@@ -11,271 +11,189 @@
 body {
     margin:0;
     font-family: 'Merriweather', serif;
-    background: linear-gradient(180deg,#001f5b,#000);
+    background: #000;
     color: #fff;
 }
-
-/* Título */
 h1 {
     text-align:center;
     font-family:'Playfair Display', serif;
     font-weight:700;
-    font-size:2.5em;
-    margin:30px 0;
-    color:#fff;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+    margin:20px 0;
+    font-size:2.2em;
+    color:#00ffff;
+    text-shadow:0 0 12px #00ffff;
 }
 
-/* Imagem principal */
-.catalog-image {
-    display:block;
-    margin:0 auto 30px;
-    width:80%;
-    max-width:600px;
+.container-sections {
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+    padding:20px;
+}
+
+.section {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    padding:20px;
     border-radius:20px;
     box-shadow:0 10px 30px rgba(0,0,0,0.8);
+    min-width:320px;
+    max-width:600px;
+    background:rgba(255,255,255,0.03);
 }
 
-/* Lista de produtos */
-.product-list {
+.tabs {
     display:flex;
     flex-direction:column;
-    gap:25px;
-    padding:20px;
+    gap:8px;
+    min-width:180px;
 }
-
-/* Card do produto sem imagem */
-.product-card {
+.tab-btn {
     display:flex;
-    flex-direction:column;
-    border-radius:20px;
-    overflow:hidden;
-    background: linear-gradient(135deg,#001f5b,#002f7f);
-    box-shadow:0 12px 30px rgba(0,0,0,0.7);
-    transition:transform 0.3s, box-shadow 0.3s;
-    cursor:pointer;
-    padding:20px;
-}
-
-.product-card:hover {
-    transform:translateY(-5px);
-    box-shadow:0 20px 40px rgba(0,0,0,0.8);
-}
-
-.product-name {
-    font-weight:700;
-    font-size:1.5em;
-    margin-bottom:10px;
-    color:#00aaff;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-}
-
-.product-desc {
-    font-size:1em;
-    margin-bottom:15px;
-    line-height:1.4;
-    color:#ccc;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
-}
-
-.price-tag {
-    font-weight:700;
-    font-size:1.3em;
-    color:#00ffff;
-    text-align:right;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-}
-
-/* Overlay */
-.overlay-full {
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:rgba(0,0,0,0.85);
-    display:none;
-    justify-content:center;
     align-items:center;
-    z-index:1000;
-    padding:20px;
-    box-sizing:border-box;
-    opacity:0;
-    transition: opacity 0.3s ease;
-}
-
-.overlay-full.show {
-    display:flex;
-    opacity:1;
-}
-
-.overlay-content {
+    gap:8px;
     background:#111;
-    border-radius:20px;
-    max-width:400px;
-    width:100%;
-    text-align:center;
-    position:relative;
-    padding:20px;
-    box-shadow:0 10px 35px rgba(0,0,0,0.8);
-}
-
-.overlay-content .product-name {
-    font-size:1.6em;
-    margin:18px 0 10px;
-    font-weight:700;
-    color:#00aaff;
-    text-shadow:1px 1px 6px rgba(0,0,0,0.6);
-}
-
-.overlay-content .product-desc {
-    font-size:1em;
-    color:#ccc;
-    margin-bottom:14px;
-    text-shadow:1px 1px 5px rgba(0,0,0,0.5);
-}
-
-.overlay-content .price-tag {
-    background-color:#007BFF;
+    border:none;
+    padding:10px 14px;
+    border-radius:12px;
     color:#fff;
     font-weight:700;
-    padding:10px 25px;
-    border-radius:12px;
-    display:inline-block;
-    margin-bottom:15px;
-    box-shadow:0 6px 20px rgba(0,123,255,0.6);
-    font-size:1.1em;
+    cursor:pointer;
+    box-shadow:0 6px 15px rgba(0,0,0,0.6);
+    transition:0.3s;
+    font-size:0.95em;
 }
-
-.overlay-content .buy-btn {
-    background-color:#00ffff;
-    border:none;
-    padding:14px 30px;
+.tab-btn img {
+    width:28px;
+    height:28px;
+    object-fit:contain;
+    border-radius:4px;
+}
+.streaming .tab-btn.active, .streaming .tab-btn:hover {
+    background:#00ffff;
     color:#000;
-    font-weight:700;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:1.05em;
-    margin-bottom:20px;
-    transition:transform 0.2s, box-shadow 0.2s;
-    box-shadow:0 8px 20px rgba(0,255,255,0.6);
+}
+.internet .tab-btn.active, .internet .tab-btn:hover {
+    background:#00ff88;
+    color:#000;
 }
 
-.overlay-content .buy-btn:hover {
-    transform:scale(1.05);
-    box-shadow:0 10px 25px rgba(0,255,255,0.8);
+.tab-content {
+    flex:1;
+    margin-left:20px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+.product-list {
+    display:none;
+    flex-direction:column;
+    padding:10px 0;
+    text-align:center;
+}
+.product-list.active {display:flex;}
+.empty-msg {
+    color:#aaa;
+    font-style:italic;
+    font-size:1.3em;
+    text-shadow:0 0 8px currentColor;
 }
 
-.close-btn {
-    position:absolute;
-    top:12px;
-    right:15px;
-    font-size:2em;
-    color:#fff;
-    background:none;
-    border:none;
-    cursor:pointer;
-    text-shadow:1px 1px 6px rgba(0,0,0,0.7);
+@media(max-width:1300px){
+    .container-sections {flex-direction:column; align-items:center;}
 }
-
-@media(max-width:500px){
-    .product-card{padding:15px;}
-    .overlay-content .buy-btn{padding:12px 25px;font-size:1em;}
+@media(max-width:768px){
+    .section {flex-direction:column;}
+    .tab-content {margin-left:0;}
 }
 </style>
 </head>
 <body>
 
-<h1>Serviços de Streaming</h1>
+<h1>Serviços de Streaming & Internet Ilimitada</h1>
 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZDifSgnVi69EhlwQjmfOVjC_dupJdjyBOa7cuAIYpzql5FB4XVjf7rBA&s=10" alt="Serviços de Streaming" class="catalog-image">
+<div class="container-sections">
 
-<div class="product-list">
-
-    <!-- PRODUTOS SEM IMAGEM -->
-    <div class="product-card"
-         data-name="COMBO/ NETFLIX + PRIME VIDEO + PARAMOUNT + HBO MAX"
-         data-desc="Combo de streaming: Netflix + Prime Video + Paramount + HBO Max."
-         data-price="R$29,90">
-
-        <div class="product-name">COMBO/ NETFLIX + PRIME VIDEO + PARAMOUNT + HBO MAX</div>
-        <div class="product-desc">Combo de streaming: Netflix + Prime Video + Paramount + HBO Max.</div>
-        <div class="price-tag">R$29,90</div>
+<!-- STREAMING -->
+<div class="section streaming">
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="combos"><img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Layers_font_awesome.svg" alt="Combos"> Combos</button>
+        <button class="tab-btn" data-tab="netflix"><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix"> Netflix</button>
+        <button class="tab-btn" data-tab="youtube"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube"> YouTube</button>
+        <button class="tab-btn" data-tab="canva"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Canva_Logo.svg" alt="Canva"> Canva</button>
+        <button class="tab-btn" data-tab="paramount"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Paramount_Pictures_logo.svg" alt="Paramount"> Paramount</button>
+        <button class="tab-btn" data-tab="spotify"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify"> Spotify</button>
+        <button class="tab-btn" data-tab="primevideo"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Amazon_Prime_Video.svg" alt="Prime Video"> Prime Vídeo</button>
+        <button class="tab-btn" data-tab="globoplay"><img src="https://upload.wikimedia.org/wikipedia/commons/3/37/GloboPlay_logo.svg" alt="Globoplay"> Globoplay</button>
+        <button class="tab-btn" data-tab="premiere"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Premiere_logo.svg" alt="Premiere"> Premiere</button>
+        <button class="tab-btn" data-tab="hbomax"><img src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg" alt="HBO Max"> HBO Max</button>
+        <button class="tab-btn" data-tab="capcut"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/CapCut_Logo.svg" alt="CapCut"> CapCut</button>
+        <button class="tab-btn" data-tab="google"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google Veo 3"> Google Veo 3</button>
+        <button class="tab-btn" data-tab="crunchyroll"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Crunchyroll_logo.svg" alt="Crunchyroll"> Crunchyroll</button>
+        <button class="tab-btn" data-tab="telecine"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Telecine_logo.svg" alt="Telecine"> Telecine</button>
+        <button class="tab-btn" data-tab="clarotv"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Claro_logo.svg" alt="Claro TV+"> Claro TV+</button>
+        <button class="tab-btn" data-tab="appletv"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple TV"> Apple TV</button>
+        <button class="tab-btn" data-tab="ufc"><img src="https://upload.wikimedia.org/wikipedia/commons/7/73/UFC_logo.svg" alt="UFC Fight Pass"> UFC Fight Pass</button>
+        <button class="tab-btn" data-tab="nba"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/NBA_logo.svg" alt="NBA League Pass"> NBA League Pass</button>
+        <button class="tab-btn" data-tab="myfamily"><img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Family_icon.svg" alt="My Family"> My Family</button>
+        <button class="tab-btn" data-tab="sky"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Sky_logo_2020.svg" alt="Sky+"> Sky+</button>
+        <button class="tab-btn" data-tab="duolingo"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Duolingo_logo.svg" alt="Duolingo Premium"> Duolingo Premium</button>
+        <button class="tab-btn" data-tab="chatgpt"><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT"> ChatGPT</button>
     </div>
-
-    <div class="product-card"
-         data-name="YOUTUBE PREMIUM + CANVA PRO"
-         data-desc="YouTube Premium + Canva Pro, 30 dias."
-         data-price="R$13,99">
-
-        <div class="product-name">YOUTUBE PREMIUM + CANVA PRO</div>
-        <div class="product-desc">YouTube Premium + Canva Pro, 30 dias.</div>
-        <div class="price-tag">R$13,99</div>
+    <div class="tab-content">
+        <div class="product-list active" id="combos"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="netflix"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="youtube"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="canva"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="paramount"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="spotify"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="primevideo"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="globoplay"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="premiere"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="hbomax"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="capcut"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="google"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="crunchyroll"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="telecine"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="clarotv"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="appletv"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="ufc"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="nba"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="myfamily"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="sky"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="duolingo"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="chatgpt"><p class="empty-msg">Em breve</p></div>
     </div>
-
-    <div class="product-card"
-         data-name="Amazon Prime - PRIME VÍDEO + PARAMOUNT"
-         data-desc="Assinatura Amazon Prime + Paramount, 30 dias."
-         data-price="R$9,99">
-
-        <div class="product-name">Amazon Prime - PRIME VÍDEO + PARAMOUNT</div>
-        <div class="product-desc">Assinatura Amazon Prime + Paramount, 30 dias.</div>
-        <div class="price-tag">R$9,99</div>
-    </div>
-
-    <div class="product-card"
-         data-name="CRUNCHYROLL + CANVA PRO"
-         data-desc="Crunchyroll + Canva Pro, 30 dias."
-         data-price="R$8,00">
-
-        <div class="product-name">CRUNCHYROLL + CANVA PRO</div>
-        <div class="product-desc">Crunchyroll + Canva Pro, 30 dias.</div>
-        <div class="price-tag">R$8,00</div>
-    </div>
-
-    <div class="product-card"
-         data-name="DISNEY + STAR PLUS 30 DIAS + CANVA"
-         data-desc="Disney + Star Plus + Canva, 30 dias."
-         data-price="R$19,99">
-
-        <div class="product-name">DISNEY + STAR PLUS 30 DIAS + CANVA</div>
-        <div class="product-desc">Disney + Star Plus + Canva, 30 dias.</div>
-        <div class="price-tag">R$19,99</div>
-    </div>
-
 </div>
 
-<!-- Overlay -->
-<div class="overlay-full" id="overlay">
-    <div class="overlay-content">
-        <button class="close-btn" id="closeOverlay">&times;</button>
-        <div class="product-name" id="overlayName"></div>
-        <div class="product-desc" id="overlayDesc"></div>
-        <div class="price-tag" id="overlayPrice"></div>
-        <button class="buy-btn" id="buyBtn">Comprar</button>
+<!-- INTERNET -->
+<div class="section internet">
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="internet-android"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="Android"> Android</button>
+        <button class="tab-btn" data-tab="internet-ios"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="iOS"> iOS</button>
+    </div>
+    <div class="tab-content">
+        <div class="product-list active" id="internet-android"><p class="empty-msg">Em breve</p></div>
+        <div class="product-list" id="internet-ios"><p class="empty-msg">Em breve</p></div>
     </div>
 </div>
 
 <script>
-const cards = document.querySelectorAll('.product-card');
-const overlay = document.getElementById('overlay');
-const overlayName = document.getElementById('overlayName');
-const overlayDesc = document.getElementById('overlayDesc');
-const overlayPrice = document.getElementById('overlayPrice');
-const closeOverlay = document.getElementById('closeOverlay');
-const buyBtn = document.getElementById('buyBtn');
+const allTabBtns = document.querySelectorAll('.tab-btn');
+allTabBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        const parentSection = btn.closest('.section');
+        const btns = parentSection.querySelectorAll('.tab-btn');
+        const lists = parentSection.querySelectorAll('.product-list');
 
-cards.forEach(card=>{
-    card.addEventListener('click',()=>{
-        overlay.classList.add('show');
-        overlayName.textContent = card.dataset.name;
-        overlayDesc.textContent = card.dataset.desc;
-        overlayPrice.textContent = card.dataset.price;
-        buyBtn.onclick = ()=> window.location.href = '#'; // Link de compra
+        btns.forEach(b=>b.classList.remove('active'));
+        lists.forEach(l=>l.classList.remove('active'));
+
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
     });
-});
-
-closeOverlay.addEventListener('click',()=>{overlay.classList.remove('show');});
-overlay.addEventListener('click', e=>{
-    if(e.target === overlay){ overlay.classList.remove('show'); }
 });
 </script>
 
