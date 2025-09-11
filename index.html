@@ -7,32 +7,165 @@
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <style>
-body{margin:0;font-family:'Merriweather',serif;background:linear-gradient(135deg,#0d0d0d,#1a1a1a,#111);color:#fff;scroll-behavior:smooth;}
-h1{text-align:center;font-family:'Playfair Display',serif;font-weight:700;margin:40px 0;font-size:3em;color:#fff;text-shadow:0 0 10px #fff,0 0 20px #000;}
-.service-selection{display:flex;justify-content:center;flex-wrap:wrap;gap:40px;padding:60px 20px;}
-.service-btn{display:flex;align-items:center;gap:15px;padding:25px 50px;border-radius:25px;font-size:1.4em;font-weight:700;cursor:pointer;border:none;background:linear-gradient(45deg,#00ffff,#0066ff);color:#000;box-shadow:0 15px 35px rgba(0,0,0,0.9),0 0 20px #00ffff;transition:0.3s;}
-.service-btn:hover{transform:scale(1.08);}
-.service-btn i{font-size:1.8em;}
-.section{display:none;flex-direction:row;padding:20px;margin:20px auto;max-width:1200px;border-radius:20px;background: rgba(20,20,20,0.85);box-shadow:0 20px 50px rgba(0,0,0,0.9);position:relative;animation:fadeIn 0.5s ease;}
-.section.active{display:flex;}
-.tabs{display:flex;flex-direction:column;gap:12px;min-width:220px;}
-.tab-btn{display:flex;align-items:center;gap:12px;background:#222;border:none;padding:14px 20px;border-radius:15px;color:#fff;font-weight:700;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.8),0 0 5px #000;transition:0.3s;font-size:1em;}
-.tab-btn i{ font-size:1.5em; width:24px; text-align:center;}
-.tab-btn:hover{background:#00ffff;color:#000;transform:scale(1.05);}
-.tab-btn.active{background:#00ffff;color:#000;}
-.back-btn{margin-bottom:25px;padding:14px 35px;border:none;border-radius:20px;background:#888;color:#fff;font-weight:700;cursor:pointer;box-shadow:0 8px 25px rgba(0,0,0,0.8),0 0 5px #000;transition:0.2s;display:flex;align-items:center;gap:10px;}
-.back-btn i{font-size:1.2em;}
-.back-btn:hover{transform:scale(1.05);background:#999;}
-.product-screen{display:none;flex:1;padding:20px;background:#1f1f1f;border-radius:20px;margin-left:20px;box-shadow:0 20px 50px rgba(0,0,0,0.9);animation:fadeIn 0.5s ease;}
-.product-screen.active{display:block;}
-.product-content h2{font-family:'Playfair Display',serif;color:#00ffff;text-shadow:0 0 15px #00ffff,0 0 5px #000;}
-.product-content p{line-height:1.5;}
-.header-image{max-width:100%;height:auto;display:block;margin:20px auto;border-radius:15px;box-shadow:0 5px 25px rgba(0,0,0,0.9),0 0 15px #00ffff;}
-footer{text-align:center;padding:20px;margin-top:50px;font-size:0.9em;color:#ccc;}
-.scroll-top{position:fixed;bottom:30px;right:30px;background:#00ffff;color:#000;padding:12px 18px;border-radius:50px;cursor:pointer;font-weight:700;box-shadow:0 5px 25px rgba(0,0,0,0.7);transition:0.3s;}
-.scroll-top:hover{transform:scale(1.1);}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-@media(max-width:900px){.section{flex-direction:column;}.product-screen{margin-left:0;margin-top:20px;}.tabs{flex-direction:row; flex-wrap:wrap; justify-content:center;}.tab-btn{flex:1; min-width:140px;}}
+body {
+  margin: 0;
+  font-family: 'Merriweather', serif;
+  background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
+  color: #fff;
+  scroll-behavior: smooth;
+}
+h1 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  margin: 50px 20px 30px 20px;
+  font-size: 3em;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #000;
+}
+.service-selection {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 40px 20px;
+}
+.service-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 40px;
+  border-radius: 30px;
+  font-size: 1.4em;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(45deg, #00cfff, #0066ff);
+  color: #fff;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+  transition: all 0.3s ease;
+}
+.service-btn:hover {
+  transform: scale(1.08);
+  background: linear-gradient(45deg, #00ffff, #0099ff);
+}
+.service-btn i {
+  font-size: 1.8em;
+}
+.section {
+  display: none;
+  flex-direction: row;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1200px;
+  border-radius: 25px;
+  background: rgba(25,25,25,0.9);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+  position: relative;
+  animation: fadeIn 0.5s ease;
+}
+.section.active { display: flex; }
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 220px;
+}
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #222;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 15px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.7);
+  transition: all 0.3s ease;
+  font-size: 1em;
+}
+.tab-btn i {
+  font-size: 1.4em;
+  width: 24px;
+  text-align: center;
+}
+.tab-btn:hover { background: #00cfff; color: #000; transform: scale(1.05); }
+.tab-btn.active { background: #00ffff; color: #000; }
+.back-btn {
+  margin-bottom: 20px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  background: #555;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.7);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.back-btn i { font-size: 1.2em; }
+.back-btn:hover { transform: scale(1.05); background: #777; }
+.product-screen {
+  display: none;
+  flex: 1;
+  padding: 20px;
+  background: #1f1f1f;
+  border-radius: 25px;
+  margin-left: 20px;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+  animation: fadeIn 0.5s ease;
+}
+.product-screen.active { display: block; }
+.product-content h2 {
+  font-family: 'Playfair Display', serif;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 5px #000;
+}
+.product-content p { line-height: 1.6; color: #ddd; }
+.header-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.8), 0 0 15px #00ffff;
+  border: 2px solid #00ffff;
+}
+footer {
+  text-align: center;
+  padding: 25px;
+  margin-top: 50px;
+  font-size: 0.9em;
+  color: #aaa;
+  background: #111;
+  border-top: 1px solid #222;
+}
+.scroll-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #00cfff;
+  color: #000;
+  padding: 12px 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.7);
+  transition: all 0.3s ease;
+}
+.scroll-top:hover { transform: scale(1.1); }
+@keyframes fadeIn { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform: translateY(0);} }
+@media(max-width:900px){
+  .section {flex-direction: column;}
+  .product-screen {margin-left:0;margin-top:20px;}
+  .tabs {flex-direction: row; flex-wrap: wrap; justify-content:center;}
+  .tab-btn {flex:1; min-width:140px;}
+}
 </style>
 </head>
 <body>
@@ -69,7 +202,6 @@ footer{text-align:center;padding:20px;margin-top:50px;font-size:0.9em;color:#ccc
         <button class="tab-btn" data-tab="duolingo"><i class="fas fa-book"></i> Duolingo Premium</button>
         <button class="tab-btn" data-tab="chatgpt"><i class="fas fa-robot"></i> ChatGPT</button>
     </div>
-    <!-- Todos os produtos Streaming -->
     <div class="product-screen" id="product-canva"><div class="product-content"><h2>Canva</h2><p>Detalhes sobre Canva.</p></div></div>
     <div class="product-screen" id="product-paramount"><div class="product-content"><h2>Paramount</h2><p>Detalhes sobre Paramount.</p></div></div>
     <div class="product-screen" id="product-spotify"><div class="product-content"><h2>Spotify</h2><p>Detalhes sobre Spotify.</p></div></div>
@@ -103,10 +235,7 @@ footer{text-align:center;padding:20px;margin-top:50px;font-size:0.9em;color:#ccc
     <div class="product-screen" id="product-internet-ios"><div class="product-content"><h2>Internet iOS</h2><p>Detalhes sobre Internet iOS.</p></div></div>
 </div>
 
-<footer>
-    &copy; 2025 Serviços & Internet | Todos os direitos reservados
-</footer>
-
+<footer>&copy; 2025 Serviços & Internet | Todos os direitos reservados</footer>
 <div class="scroll-top" onclick="window.scrollTo({top:0, behavior:'smooth'});"><i class="fas fa-arrow-up"></i></div>
 
 <script>
@@ -120,7 +249,8 @@ serviceBtns.forEach(btn=>{
         document.querySelector('.service-selection').style.display='none';
         const section=document.getElementById(btn.dataset.section);
         section.classList.add('active');
-        section.querySelector('.tabs').style.display='flex';
+        const tabs = section.querySelector('.tabs');
+        if(tabs) tabs.style.display='flex';
         section.querySelectorAll('.product-screen').forEach(p=>p.classList.remove('active'));
         historyStack.push({type:'service',section:section});
     });
@@ -129,10 +259,11 @@ serviceBtns.forEach(btn=>{
 tabBtns.forEach(btn=>{
     btn.addEventListener('click',()=>{
         const section=btn.closest('.section');
-        section.querySelector('.tabs').style.display='none';
         section.querySelectorAll('.product-screen').forEach(p=>p.classList.remove('active'));
         const productScreen=document.getElementById('product-'+btn.dataset.tab);
         if(productScreen) productScreen.classList.add('active');
+        const tabs = section.querySelector('.tabs');
+        if(tabs) tabs.style.display='none';
         section.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
         btn.classList.add('active');
         historyStack.push({type:'product',section:section});
@@ -145,7 +276,8 @@ backBtns.forEach(btn=>{
         const last=historyStack.pop();
         if(last.type==='product'){
             last.section.querySelectorAll('.product-screen').forEach(p=>p.classList.remove('active'));
-            last.section.querySelector('.tabs').style.display='flex';
+            const tabs = last.section.querySelector('.tabs');
+            if(tabs) tabs.style.display='flex';
             last.section.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
         } else if(last.type==='service'){
             last.section.classList.remove('active');
@@ -154,5 +286,6 @@ backBtns.forEach(btn=>{
     });
 });
 </script>
+
 </body>
 </html>
